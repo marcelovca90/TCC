@@ -36,7 +36,7 @@ def grid_search_cv(model_obj, model_name, model_params, X, Y):
         trial_parameters.append(clf.best_params_)
 
         # Nested CV with parameter optimization
-        nested_score = cross_validate(clf, X, Y, cv=outer_cv, n_jobs=-1, scoring=('accuracy', 'precision', 'recall', 'f1_micro', 'f1_macro', 'f1_weighted'), verbose=1)
+        nested_score = cross_validate(clf, X, Y, cv=outer_cv, scoring=('accuracy', 'precision', 'recall', 'f1_micro', 'f1_macro', 'f1_weighted'), verbose=1)
         nested_scores.append(nested_score)
 
     print(f'Finding which nested CV produced the best result...')

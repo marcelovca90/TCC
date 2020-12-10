@@ -5,17 +5,19 @@ from sklearn import decomposition
 
 def slice_data_frame(n_news,shuffle=False):
     # n_news - Quantidade de cada tipo de notícias que estará no dataframe reduzido
+    n_true = int(0.8 * n_news)
+    n_fake = int(0.2 * n_news)
     news_range = list(range(n_news))
 
     fake_csv = pd.read_csv('./assets/Fake.csv')
     true_csv = pd.read_csv('./assets/True.csv')
 
     if shuffle == True:
-        fake_csv.sample(n=n_news,random_state=42).to_csv(f'./assets/cache_csv/Fake_{n_news}.csv')
-        true_csv.sample(n=n_news,random_state=42).to_csv(f'./assets/cache_csv/True_{n_news}.csv')
+        true_csv.sample(n=n_true,random_state=42).to_csv(f'./assets/cache_csv/True_{n_true}.csv')
+        fake_csv.sample(n=n_fake,random_state=42).to_csv(f'./assets/cache_csv/Fake_{n_fake}.csv')
     else:
-        fake_csv.loc[news_range].to_csv(f'./assets/cache_csv/Fake_{n_news}.csv')
-        true_csv.loc[news_range].to_csv(f'./assets/cache_csv/True_{n_news}.csv')
+        fake_csv.loc[news_range].to_csv(f'./assets/cache_csv/Fake_{n_true}.csv')
+        true_csv.loc[news_range].to_csv(f'./assets/cache_csv/True_{n_fake}.csv')
 
 def merge_dicts(x, y):
     z = x.copy()   # start with x's keys and values

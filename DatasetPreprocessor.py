@@ -79,11 +79,13 @@ def load_and_preprocess(min_df,n_news,shuffle):
     nltk.download('wordnet',quiet=True)
 
     try:
+        n_true = int(0.8 * n_news)
+        n_fake = int(0.2 * n_news)
         # Tenta carregar os data sets ja processado do disco
         print('Attempting to load data from cached data set...')
-        X = np.load(f'./assets/cache_npz/X_{n_news}.npz')
+        X = np.load(f'./massets/cache_npz/X_{n_true}_true_{n_fake}_fake.npz')
         X = X.f.arr_0
-        Y = np.load(f'./assets/cache_npz/Y_{n_news}.npz')
+        Y = np.load(f'./massets/cache_npz/Y_{n_true}_true_{n_fake}_fake.npz')
         Y = Y.f.arr_0
         print('Data successfully loaded from cached files.')
     except OSError:
@@ -95,8 +97,8 @@ def load_and_preprocess(min_df,n_news,shuffle):
         # Carrega n_news noticias de cada tipo, totalizando 2*n_news noticias
         else:
             slice_data_frame(n_news,shuffle)
-            true = pd.read_csv(f'./assets/cache_csv/True_{n_news}.csv')
-            false = pd.read_csv(f'./assets/cache_csv/Fake_{n_news}.csv')
+            true = pd.read_csv(f'./assets/cache_csv/True_{n_true}.csv')
+            false = pd.read_csv(f'./assets/cache_csv/Fake_{n_fake}.csv')
         print('Data successfully loaded from original files.')
 
         global lemmatizer
@@ -148,8 +150,8 @@ def load_and_preprocess(min_df,n_news,shuffle):
         # X = principal_component_analysis(X)
 
         # cache data set to filesystem (numpy file format)
-        np.savez_compressed(f'./assets/cache_npz/X_{n_news}.npz', X)
-        np.savez_compressed(f'./assets/cache_npz/Y_{n_news}.npz', Y)
+        np.savez_compressed(f'./assets/cache_npz/X_{n_true}_true_{n_fake}_fake.npz.npz', X)
+        np.savez_compressed(f'./assets/cache_npz/Y_{n_true}_true_{n_fake}_fake.npz.npz', Y)
         print('Data set successfully cached for further reuse.')
 
     # logging the data read from the filesystem
