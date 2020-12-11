@@ -1,0 +1,12 @@
+,value
+_fit_time,120.33750824928283
+_score_time,3.0013819694519044
+_accuracy,0.8027000000000001
+_precision,0.8026192715392279
+_recall,0.9991369649999904
+_f1_micro,0.8027
+_f1_macro,0.46193995871120236
+_f1_weighted,0.7187499814446595
+contamination,auto
+n_neighbors,17
+novelty,True
