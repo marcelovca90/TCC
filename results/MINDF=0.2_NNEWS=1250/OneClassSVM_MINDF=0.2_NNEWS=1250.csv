@@ -1,0 +1,12 @@
+,value
+_fit_time,4.240935039520264
+_score_time,0.009021902084350586
+_accuracy,0.852
+_precision,0.9201610531489587
+_recall,0.9024099609776384
+_f1_micro,0.852
+_f1_macro,0.7426384708846742
+_f1_weighted,0.8409993743238864
+gamma,1e-06
+kernel,sigmoid
+nu,0.25
